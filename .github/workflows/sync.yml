@@ -1,0 +1,43 @@
+name: sync-index
+
+on:
+  schedule:
+    # 每周一 03:17 UTC（北京时间 11:17）
+    - cron: '17 3 * * 1'
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - 'data/**'
+      - 'scripts/**'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install format validator
+        run: npm install --no-save @deepseek-ai/dsh-plugin-market-index@latest
+
+      - name: Build index
+        run: node scripts/build.mjs
+
+      - name: Commit when changed
+        run: |
+          if git diff --quiet -- index.json; then
+            echo "index.json unchanged; nothing to commit"
+            exit 0
+          fi
+          git config user.name "dsh-plugins-zh bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add index.json
+          git commit -m "chore: sync index $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push
