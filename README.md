@@ -10,10 +10,10 @@ DSH 官方目录里条目的 `title` 就是 `owner/repo` 这种英文仓库路�
 2. 打开 **发现** → **添加索引源**，粘贴：
 
 ```
-https://cdn.jsdelivr.net/gh/OWNER/dsh-plugins-zh@main/index.json
+https://cdn.jsdelivr.net/gh/SuMing-99/dsh-plugins-zh@main/index.json
 ```
 
-（把 `OWNER` 换成这个仓库的账号名。jsDelivr 走 CDN，比 `raw.githubusercontent.com` 和 GitHub Pages 在国内都稳。也可用 `https://cdn.jsdelivr.net/gh/OWNER/dsh-plugins-zh@<tag>/index.json` 固定版本。）
+（jsDelivr 走 CDN，比 `raw.githubusercontent.com` 和 GitHub Pages 在国内都稳。也可用 `https://cdn.jsdelivr.net/gh/SuMing-99/dsh-plugins-zh@<tag>/index.json` 固定版本。）
 
 3. 之后的浏览：卡片标题是中文名，分类按钮是中文，排序可按 **GitHub 星标 / 30 天下载 / 最近更新**。搜中文关键词也行（匹配中文描述）。
 
